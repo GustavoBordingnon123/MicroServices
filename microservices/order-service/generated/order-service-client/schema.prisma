@@ -1,0 +1,20 @@
+// order-service/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/order-service-client" // Gera o cliente Prisma em uma pasta dedicada
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") // A URL do banco de dados, definida no arquivo .env do order-service
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  product    String
+  quantity   Int
+  totalPrice Float
+  createdAt  DateTime @default(now())
+}

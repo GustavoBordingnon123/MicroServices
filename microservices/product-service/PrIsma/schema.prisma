@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/product-service-client" // Gera o cliente Prisma em uma pasta dedicada
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") // Usa a URL do banco de dados do arquivo .env
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  stock       Int
+  createdAt   DateTime @default(now())
+}
